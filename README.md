@@ -6,5 +6,5 @@ mv .env.dev.example .env
 
 Create symbolink for ``docker compose up ``
 ```text
-ls docker-compose.dev.yml docker-compose.yml
+ln -s docker-compose.dev.yml docker-compose.yml
 ```
