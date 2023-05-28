@@ -12,20 +12,17 @@ services:
         read_only: true
       - ${NGINX_LOGS_FOLDER}:/var/log/nginx
       - ${NGINX_STATIC_FILES_FOLDER}:/var/www/static
-    volumes_from:
-      - backend_volumes # remove it
+      - ${CODE_FOLDER}:/var/www/html
   php:
-    build: ../crumble_backend/containers/php #wtf
-    volumes_from:
-      - backend_volumes
+    build: ./containers/php
+    volumes:
+      - ${CODE_FOLDER}:/var/www/html
     environment:
       - APP_NAME=${LARAVEL_APP_NAME}
       - APP_ENV=${LARAVEL_APP_ENV}
       - APP_KEY=${LARAVEL_APP_KEY}
       - APP_DEBUG=${LARAVEL_APP_DEBUG}
       - LOG_CHANNEL=${LARAVEL_LOG_CHANNEL}
-      - STEAM_USERS=${LARAVEL_STEAM_USERS}
-      - STEAM_DEFAULT_USER=${LARAVEL_STEAM_DEFAULT_USER}
       - MARIADB_HOST
       - MARIADB_DATABASE
       - MARIADB_USER
@@ -42,10 +39,6 @@ services:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
-  backend_volumes:
-    image: busybox
-    volumes:
-      - ${CODE_FOLDER}:/var/www/html
 
 volumes:
   maria_db_data:
