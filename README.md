@@ -2,7 +2,7 @@ Faster creating project based on **LEMP** (Linux, NGINX, MYSQL, PHP) from scratc
 
 
 ## Using 
-___
+
 ### Development
 ```text
 # create symbolink
