@@ -1,6 +1,7 @@
 FROM php:8.1-fpm-alpine3.15
 
 COPY ./code /var/www/html
+RUN chmod -R 777 /var/www/html/storage
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
